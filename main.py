@@ -1,6 +1,7 @@
 import streamlit as st
 from supabase import create_client, Client
 import pandas as pd
+import time
 
 @st.cache_resource
 def init_connection():
