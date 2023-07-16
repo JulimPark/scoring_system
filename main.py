@@ -16,9 +16,9 @@ def main_page1():
     user2 = st.session_state.user2
     user3 = st.session_state.user3
     
-    title1 = f"<h1 style='text-align: center; color: #47DF9C;'>수학클리닉 🞧 {user1}</h1>"
+    title1 = f"<h1 style='text-align: center; color: #47DF9C;'>수학클리닉 + {user1}</h1>"
     title2 = f"<h2 style='text-align: center; color: #ffffff;'>{user2}님, 반갑습니다!</h1>"
-    title3 = f"<h6 style='text-align: center; color: #4DDBFE;'>🡴 왼쪽상단 SideBar에서 메뉴를 선택하세요</h1>"
+    title3 = f"<h6 style='text-align: center; color: #4DDBFE;'><< 왼쪽상단 SideBar에서 메뉴를 선택하세요</h1>"
     st.markdown(f"{title1}", unsafe_allow_html=True)
     st.divider()
     st.markdown(f"{title2}", unsafe_allow_html=True)
@@ -62,7 +62,7 @@ def main_page1():
     
     
     st.divider()
-    title5= f"<h3 style='text-align: center; color: gray;'>수학클리닉 🞧 {user1}</h1>"
+    title5= f"<h3 style='text-align: center; color: gray;'>수학클리닉 + {user1}</h1>"
     st.markdown(f"{title5}", unsafe_allow_html=True)
 
 @st.cache_data
