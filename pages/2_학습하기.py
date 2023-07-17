@@ -21,7 +21,7 @@ def view_data(bucket_name):
         with st.expander(dict_data[:-4]):
             st.header(dict_data[:-4])            
             open_pdf(bucket_name,dict_data,data_source)
-image_list = []
+
 def open_pdf(bucket_name,dict_data,url):
     
         res = supabase.storage.from_(bucket_name).download(dict_data)
@@ -29,12 +29,9 @@ def open_pdf(bucket_name,dict_data,url):
         base64_pdf = base64.b64encode(res).decode('utf-8')        
 
         
-        # st.markdown(f'<embed src="https://drive.google.com/viewerng/viewer?embedded=true&url={url}" width="400" height="400">', unsafe_allow_html=True)
-        st.markdown(f'<iframe src="https://drive.google.com/file/d/16yQdBYpvVuSQry9bzGH5RSeWoDVFRKA3/preview#toolbar=0" width="100%" height="800px">', unsafe_allow_html=True)
+        st.markdown(f'<iframe src="https://drive.google.com/viewerng/viewer?embedded=true&url={url}/preview#toolbar=0" width="100%" height="800px">', unsafe_allow_html=True)
+        # st.markdown(f'<iframe src="{url}/preview#toolbar=0" width="100%" height="800px">', unsafe_allow_html=True)
     
-        # pdf_display = f'<a href="{url}"></a>'
-        pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="480" height="720" type="application/pdf" scrolling="yes"></iframe>'
-        st.markdown(pdf_display, unsafe_allow_html=True)
 
     
 
