@@ -33,10 +33,13 @@ def open_pdf(bucket_name,dict_data,url):
         res = supabase.storage.from_(bucket_name).download(dict_data)
         
         base64_pdf = base64.b64encode(res).decode('utf-8')        
-            
-        pdf_display = f'<a href="{url}"></a>'
-        # pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="480" height="720" type="application/pdf"></iframe>'
-        st.markdown(pdf_display, unsafe_allow_html=True)
+
+        
+        st.markdown(f'<embed src="https://drive.google.com/viewerng/viewer?embedded=true&url={url}" width="400" height="400">', unsafe_allow_html=True)
+    
+        # pdf_display = f'<a href="{url}"></a>'
+        # # pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="480" height="720" type="application/pdf"></iframe>'
+        # st.markdown(pdf_display, unsafe_allow_html=True)
         
     # except HTTPError as e:
     #     err = e.read()
