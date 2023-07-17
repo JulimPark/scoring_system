@@ -25,19 +25,22 @@ def view_data(bucket_name):
         data_source = supabase.storage.from_(bucket_name).get_public_url(dict_data)
         with st.expander(dict_data[:-4]):
             st.header(dict_data[:-4])            
-            open_pdf(data_source)
+            open_pdf(bucket_name,dict_data)
 
-def open_pdf(url):
+def open_pdf(bucket_name,dict_data):
     try:
-                
-        
-        # PDF를 읽습니다.
-        response = requests.get(url)
-        pdf_bytes = response.content
+        pdf_buffer = BytesIO()
+        res = supabase.storage.from_(bucket_name).download(dict_data)
+        # with open(destination, 'wb+') as f:
+        #   res = supabase.storage.from_(bucket_name).download(source)
+        #   f.write(res)
+        # # PDF를 읽습니다.
+        # response = requests.get(url)
+        # pdf_bytes = response.content
         
         # PDF를 BytesIO 객체에 저장합니다.
-        pdf_buffer = BytesIO()
-        pdf_buffer.write(pdf_bytes)
+        
+        pdf_buffer.write(res)
         
         st.write(pdf_buffer.getvalue())
         # st.write(req.content)
