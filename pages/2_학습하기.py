@@ -26,10 +26,16 @@ def view_data(bucket_name):
 
 def open_pdf(bucket_name,dict_data):
     try:
-        pdf_buffer = BytesIO()
+        # pdf_buffer = BytesIO()
+        # res = supabase.storage.from_(bucket_name).download(dict_data)
+        # pdf_buffer.write(res)
+        
+
         res = supabase.storage.from_(bucket_name).download(dict_data)
-        pdf_buffer.write(res)
-        base64_pdf = base64.b64encode(pdf_buffer.getvalue()).decode('utf-8')        
+        with open('temp.pdf','wb') as f:
+            f.write(res)
+            base64_pdf = base64.b64encode(f).decode('utf-8')        
+            f.close()
         pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="480" height="720" type="application/pdf"></iframe>'
         st.markdown(pdf_display, unsafe_allow_html=True)
         
