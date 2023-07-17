@@ -36,7 +36,7 @@ def open_pdf(url):
         # html = urllib.request.urlopen(req)
         # st.markdown(html)
         # st.write(html)
-        req = requests.get(url,headers=headers)
+        req = requests.get(url,headers=headers,timeout=10)
         # st.write(html)
         st.write(req.content)
         base64_pdf = base64.b64encode(req.content).decode('utf-8')        
