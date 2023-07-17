@@ -30,14 +30,12 @@ def open_pdf(bucket_name,dict_data,url):
         # res = supabase.storage.from_(bucket_name).download(dict_data)
         # pdf_buffer.write(res)
         
-        import webbrowser
-        webbrowser.open_new(url)
-        # res = supabase.storage.from_(bucket_name).download(dict_data)
+        res = supabase.storage.from_(bucket_name).download(dict_data)
         
-        # base64_pdf = base64.b64encode('temp.pdf').decode('utf-8')        
+        base64_pdf = base64.b64encode(res).decode('utf-8')        
             
-        # pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="480" height="720" type="application/pdf"></iframe>'
-        # st.markdown(pdf_display, unsafe_allow_html=True)
+        pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="480" height="720" type="application/pdf"></iframe>'
+        st.markdown(pdf_display, unsafe_allow_html=True)
         
     # except HTTPError as e:
     #     err = e.read()
