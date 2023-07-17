@@ -29,7 +29,7 @@ def open_pdf(bucket_name,dict_data,url):
         base64_pdf = base64.b64encode(res).decode('utf-8')        
 
         
-        st.markdown(f'<iframe src="https://docs.google.com/viewer?url={url}" width="100%" height="800px">', unsafe_allow_html=True)
+        st.markdown(f'<iframe src="https://docs.google.com/viewer?url={url}&embedded=true" width="100%" height="800px">', unsafe_allow_html=True)
         # st.markdown(f'<iframe src="{url}/preview#toolbar=0" width="100%" height="800px">', unsafe_allow_html=True)
     
 
