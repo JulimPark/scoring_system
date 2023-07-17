@@ -22,19 +22,18 @@ def view_data(bucket_name):
         data_source = supabase.storage.from_(bucket_name).get_public_url(dict_data)
         with st.expander(dict_data[:-4]):
             st.header(dict_data[:-4])            
-            open_pdf(bucket_name,dict_data)
+            open_pdf(bucket_name,dict_data,data_source)
 
-def open_pdf(bucket_name,dict_data):
+def open_pdf(bucket_name,dict_data,url):
     # try:
         # pdf_buffer = BytesIO()
         # res = supabase.storage.from_(bucket_name).download(dict_data)
         # pdf_buffer.write(res)
         
-
+        import webbrowser
+        webbrowser.open_new(url)
         res = supabase.storage.from_(bucket_name).download(dict_data)
-        with open('temp.pdf','wb') as f:
-            f.write(res)
-            f.close()
+        
         base64_pdf = base64.b64encode('temp.pdf').decode('utf-8')        
             
         pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="480" height="720" type="application/pdf"></iframe>'
