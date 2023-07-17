@@ -20,6 +20,7 @@ def view_data(bucket_name):
         data_source = supabase.storage.from_(bucket_name).get_public_url(dict_data)
         with st.expander(dict_data[:-4]):
             st.header(dict_data[:-4])            
+            st.markdown(f'<iframe src="https://docs.google.com/viewer?url={data_source}&embedded=true" width="100%" height="800px">', unsafe_allow_html=True)
             open_pdf(bucket_name,dict_data,data_source)
 
 def open_pdf(bucket_name,dict_data,url):
