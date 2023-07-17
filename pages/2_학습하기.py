@@ -1,10 +1,6 @@
 import streamlit as st
 import base64
 from supabase import create_client
-from urllib import request
-from io import BytesIO
-import fitz
-
 
 # ## 온라인 게시용 수파 접속
 @st.cache_resource
@@ -27,27 +23,14 @@ def view_data(bucket_name):
             open_pdf(bucket_name,dict_data,data_source)
 image_list = []
 def open_pdf(bucket_name,dict_data,url):
-    # # try:
-    #     # pdf_buffer = BytesIO()
-    #     res = supabase.storage.from_(bucket_name).download(dict_data)
-    #     with open('temp.pdf','wb') as f:
-    #         f.write(res)
-    #         doc = fitz.open(f)
-    #     # doc = fitz.open(res)
     
-    #     for page in doc:
-    #         img = page.get_pixmap()
-    #         image_list.append(img)
-
-    #     for i in range(len(image_list)):
-    #         st.image(image_list[i])
         res = supabase.storage.from_(bucket_name).download(dict_data)
         
         base64_pdf = base64.b64encode(res).decode('utf-8')        
 
         
         # st.markdown(f'<embed src="https://drive.google.com/viewerng/viewer?embedded=true&url={url}" width="400" height="400">', unsafe_allow_html=True)
-        st.markdown(f'<iframe src="https://drive.google.com/file/d/1aqpSMct4v_onKLbpy7Ndmk6fAspngdiy/preview#toolbar=0" width="400" height="400">', unsafe_allow_html=True)
+        st.markdown(f'<iframe src="https://drive.google.com/file/d/16yQdBYpvVuSQry9bzGH5RSeWoDVFRKA3/view?usp=drive_link" width="600" height="720">', unsafe_allow_html=True)
     
         # pdf_display = f'<a href="{url}"></a>'
         pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="480" height="720" type="application/pdf" scrolling="yes"></iframe>'
