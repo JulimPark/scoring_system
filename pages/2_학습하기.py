@@ -29,16 +29,18 @@ def view_data(bucket_name):
             open_pdf(data_source)
 
 def open_pdf(url):
-    # try:
-    headers = {'User-Agent':'Chrome/66.0.3359.181'}
-    req = urllib.request.Request(url,headers=headers)
-    html = urllib.request.urlopen(req)
-    # except HTTPError as e:
-    #     err = e.read()
-    #     code = e.getcode()
+    try:
+        headers = {'User-Agent':'Chrome/66.0.3359.181'}
+        req = urllib.request.Request(url,headers=headers)
+        html = urllib.request.urlopen(req)
+        base64_pdf = base64.b64encode(html.read()).decode('utf-8')        
+        pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="950" type="application/pdf"></iframe>'
+        st.markdown(pdf_display, unsafe_allow_html=True)
+    except HTTPError as e:
+        err = e.read()
+        code = e.getcode()
+        st.write(err)
+        st.write(code)
     
-    base64_pdf = base64.b64encode(html.read()).decode('utf-8')        
-    pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="950" type="application/pdf"></iframe>'
-    st.markdown(pdf_display, unsafe_allow_html=True)
 
 view_data('testbuck')
