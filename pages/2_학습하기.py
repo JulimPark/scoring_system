@@ -25,7 +25,7 @@ def view_data(bucket_name):
             open_pdf(bucket_name,dict_data)
 
 def open_pdf(bucket_name,dict_data):
-    try:
+    # try:
         # pdf_buffer = BytesIO()
         # res = supabase.storage.from_(bucket_name).download(dict_data)
         # pdf_buffer.write(res)
@@ -34,16 +34,16 @@ def open_pdf(bucket_name,dict_data):
         res = supabase.storage.from_(bucket_name).download(dict_data)
         with open('temp.pdf','wb') as f:
             f.write(res)
-            base64_pdf = base64.b64encode(f).decode('utf-8')        
+            base64_pdf = base64.b64encode('temp.pdf').decode('utf-8')        
             f.close()
         pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="480" height="720" type="application/pdf"></iframe>'
         st.markdown(pdf_display, unsafe_allow_html=True)
         
-    except HTTPError as e:
-        err = e.read()
-        code = e.getcode()
-        st.write(err)
-        st.write(code)
+    # except HTTPError as e:
+    #     err = e.read()
+    #     code = e.getcode()
+    #     st.write(err)
+    #     st.write(code)
     
 
 view_data('testbuck')
