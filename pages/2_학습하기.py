@@ -37,8 +37,9 @@ def open_pdf(url):
         # st.markdown(html)
         # st.write(html)
         req = requests.get(url)#,headers=headers)
-        
-        base64_pdf = base64.b64encode(req.raw).decode('utf-8')        
+        st.write(req.status_code)
+        st.write(req.content)
+        base64_pdf = base64.b64encode(req.content).decode('utf-8')        
         pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="950" type="application/pdf"></iframe>'
         st.markdown(pdf_display, unsafe_allow_html=True)
     except HTTPError as e:
