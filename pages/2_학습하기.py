@@ -30,7 +30,7 @@ def open_pdf(bucket_name,dict_data,url):
 
         
         # st.markdown(f'<embed src="https://drive.google.com/viewerng/viewer?embedded=true&url={url}" width="400" height="400">', unsafe_allow_html=True)
-        st.markdown(f'<iframe src="https://drive.google.com/file/d/16yQdBYpvVuSQry9bzGH5RSeWoDVFRKA3/" width="600" height="720">', unsafe_allow_html=True)
+        st.markdown(f'<iframe src="https://drive.google.com/file/d/16yQdBYpvVuSQry9bzGH5RSeWoDVFRKA3/preview#toolbar=0" width="600" height="720">', unsafe_allow_html=True)
     
         # pdf_display = f'<a href="{url}"></a>'
         pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="480" height="720" type="application/pdf" scrolling="yes"></iframe>'
