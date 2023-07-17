@@ -29,7 +29,8 @@ def view_data(bucket_name):
 
 def open_pdf(url):
     try:
-        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36',}
+        # headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36',}
+        headers = {'User-Agent':'Chrome/66.0.3359.181'}
         # req = urllib.request.Request(url,headers=headers)
         
         # html = urllib.request.urlopen(req)
