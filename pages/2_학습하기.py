@@ -3,6 +3,8 @@ import base64
 from supabase import create_client
 import requests
 from io import BytesIO
+import fitz
+
 
 # ## 온라인 게시용 수파 접속
 @st.cache_resource
@@ -29,7 +31,12 @@ def open_pdf(bucket_name,dict_data,url):
         pdf_buffer = BytesIO()
         res = supabase.storage.from_(bucket_name).download(dict_data)
         pdf_buffer.write(res)
-        
+
+        doc = fitz.open(pdf_buffer)
+
+        for page in doc:
+            img = page.get_pixmap()
+            st.image(img)
         # res = supabase.storage.from_(bucket_name).download(dict_data)
         
         # base64_pdf = base64.b64encode(res).decode('utf-8')        
