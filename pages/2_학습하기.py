@@ -16,6 +16,6 @@ supabase2 = init_connection()
 
 
 st.title('학습 :blue[컨텐츠]')
-resource = supabase2.table('exam_address').select('*').execute()
+resource = supabase2.table('exam_address').select('*').eq('학년','고3/재수').execute()
 df = pd.DataFrame(resource.data)
 st.dataframe(df)
