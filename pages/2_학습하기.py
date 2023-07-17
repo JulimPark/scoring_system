@@ -31,15 +31,15 @@ def open_pdf(url):
     try:
         # headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36',}
         headers = {'User-Agent':'Chrome/66.0.3359.181'}
-        # req = urllib.request.Request(url,headers=headers)
+        req = urllib.request.Request(url,headers=headers)
         
-        # html = urllib.request.urlopen(req)
+        html = urllib.request.urlopen(req)
         # st.markdown(html)
         # st.write(html)
-        req = requests.get(url,headers=headers,timeout=10)
+        # req = requests.get(url,headers=headers,timeout=10)
         # st.write(html)
         st.write(req.content)
-        base64_pdf = base64.b64encode(req.content).decode('utf-8')        
+        base64_pdf = base64.b64encode(html.read()).decode('utf-8')        
         pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="950" type="application/pdf"></iframe>'
         st.markdown(pdf_display, unsafe_allow_html=True)
     except HTTPError as e:
