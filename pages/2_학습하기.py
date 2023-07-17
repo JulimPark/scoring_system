@@ -28,15 +28,7 @@ def open_pdf(bucket_name,dict_data):
     try:
         pdf_buffer = BytesIO()
         res = supabase.storage.from_(bucket_name).download(dict_data)
-        # with open(destination, 'wb+') as f:
-        #   res = supabase.storage.from_(bucket_name).download(source)
-        #   f.write(res)
-        # # PDF를 읽습니다.
-        # response = requests.get(url)
-        # pdf_bytes = response.content
-        
-        # PDF를 BytesIO 객체에 저장합니다.
-        
+        st.write(res)
         pdf_buffer.write(res)
         
         # st.write(pdf_buffer.getvalue())
