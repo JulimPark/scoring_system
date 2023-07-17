@@ -28,16 +28,19 @@ def view_data(bucket_name):
 image_list = []
 def open_pdf(bucket_name,dict_data,url):
     # try:
-        pdf_buffer = BytesIO()
-        res = supabase.storage.from_(bucket_name).download(dict_data)
-        with open('temp.pdf','wb') as f:
-            f.write(res)
-            doc = fitz.open(f)
-        
+        # pdf_buffer = BytesIO()
+        # res = supabase.storage.from_(bucket_name).download(dict_data)
+        # with open('temp.pdf','wb') as f:
+        #     f.write(res)
+        #     doc = fitz.open(f)
+        doc = fitz.open(url)
+    
         for page in doc:
             img = page.get_pixmap()
-            img.save('temp.png')
-            st.image('temp.png')
+            image_list.append(img)
+
+        for i in range(len(image_list)):
+            st.image(image_list[i]))
         # res = supabase.storage.from_(bucket_name).download(dict_data)
         
         # base64_pdf = base64.b64encode(res).decode('utf-8')        
