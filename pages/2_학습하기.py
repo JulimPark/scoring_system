@@ -22,8 +22,8 @@ df = pd.DataFrame(resource.data)
 add_list = df.주소.to_list()
 content_list = df.내용.to_list()
 
-for i in add_list:
-    pdf_display = F'<iframe src="{i}" width="100%" height="800px"></iframe>'
+for i in range(len(add_list)):
+    pdf_display = F'<iframe src="{add_list[i]}" width="100%" height="800px"></iframe>'
     with st.expander(content_list[i]):
         st.subheader(content_list[i])
         st.markdown(pdf_display, unsafe_allow_html=True)
