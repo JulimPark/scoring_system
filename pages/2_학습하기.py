@@ -26,8 +26,9 @@ def view_data(bucket_name):
         st.write(data_source)
         with st.expander(dict_data[:-4]):
             st.header(dict_data[:-4])
-            headers = {'User-Agent':'Chrome/66.0.3359.181'}
-            req = urllib.request.Request(data_source)#,headers=headers)
+            # headers = {'User-Agent':'Chrome/66.0.3359.181'}
+            headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36',}
+            req = urllib.request.Request(data_source,headers=headers)
             st.write(req)
             html = urllib.request.urlopen(req)
             st.write(html)
