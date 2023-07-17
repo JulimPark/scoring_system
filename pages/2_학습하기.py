@@ -40,7 +40,7 @@ def open_pdf(bucket_name,dict_data,url):
         # pdf_display = f'<a href="{url}"></a>'
         pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="480" height="720" type="application/pdf" scrolling="yes"></iframe>'
         st.markdown(pdf_display, unsafe_allow_html=True)
-        # 
+        st.image(res)
     # except HTTPError as e:
     #     err = e.read()
     #     code = e.getcode()
