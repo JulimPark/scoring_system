@@ -3,7 +3,7 @@ import base64
 from supabase import create_client
 import urllib
 from urllib.error import URLError, HTTPError
-
+import requests
 
 
 
@@ -24,20 +24,19 @@ def view_data(bucket_name):
         dict_data = res[i]['name']
         data_source = supabase.storage.from_(bucket_name).get_public_url(dict_data)
         with st.expander(dict_data[:-4]):
-            st.header(dict_data[:-4])
-            headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36',}
-            req = urllib.request.Request(data_source,headers=headers)
-            st.write(req)
+            st.header(dict_data[:-4])            
             open_pdf(data_source)
 
 def open_pdf(url):
     try:
         headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36',}
-        req = urllib.request.Request(url,headers=headers)
-        html = urllib.request.urlopen(req)
-        st.markdown(html)
-        st.write(html)
-        base64_pdf = base64.b64encode(html.read()).decode('utf-8')        
+        # req = urllib.request.Request(url,headers=headers)
+        
+        # html = urllib.request.urlopen(req)
+        # st.markdown(html)
+        # st.write(html)
+        req = requests.get(url)
+        base64_pdf = base64.b64encode(req.content).decode('utf-8')        
         pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="950" type="application/pdf"></iframe>'
         st.markdown(pdf_display, unsafe_allow_html=True)
     except HTTPError as e:
