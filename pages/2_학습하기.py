@@ -14,10 +14,8 @@ def init_connection():
 supabase2 = init_connection()
 
 
+
 st.title('학습 :blue[컨텐츠]')
-response2= supabase2.table('take_exam').select('*').execute()
-st.dataframe(respnse2)
-response1= supabase2.table('exam_address').select('*').execute()
-st.dataframe(respnse1)
-st.markdown(f'<iframe src="https://docs.google.com/viewer?url={data_source}&embedded=true" width="100%" height="800px">', unsafe_allow_html=True)
-        
+resource = supabase.table('exam_address').select('*').execute()
+df = pd.DataFrame(resource)
+st.dataframe(df)
