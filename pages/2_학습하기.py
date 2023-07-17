@@ -35,12 +35,12 @@ def open_pdf(bucket_name,dict_data,url):
         base64_pdf = base64.b64encode(res).decode('utf-8')        
 
         
-        st.markdown(f'<embed src="https://drive.google.com/viewerng/viewer?embedded=true&url={url}" width="400" height="400">', unsafe_allow_html=True)
+        # st.markdown(f'<embed src="https://drive.google.com/viewerng/viewer?embedded=true&url={url}" width="400" height="400">', unsafe_allow_html=True)
     
         # pdf_display = f'<a href="{url}"></a>'
-        # # pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="480" height="720" type="application/pdf"></iframe>'
-        # st.markdown(pdf_display, unsafe_allow_html=True)
-        
+        pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="480" height="720" type="application/pdf" scrolling="yes"></iframe>'
+        st.markdown(pdf_display, unsafe_allow_html=True)
+        # 
     # except HTTPError as e:
     #     err = e.read()
     #     code = e.getcode()
