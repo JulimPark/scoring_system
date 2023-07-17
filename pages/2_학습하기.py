@@ -1,6 +1,8 @@
 import streamlit as st
 import base64
 from supabase import create_client
+import pandas as pd
+
 
 # ## 온라인 게시용 수파 접속
 @st.cache_resource
@@ -13,15 +15,10 @@ supabase = init_connection()
 
 
 st.title('학습 :blue[컨텐츠]')
-def view_data(bucket_name):
-    res = supabase.storage.from_(bucket_name).list()
-    for i in range(len(res)):
-        dict_data = res[i]['name']
-        data_source = supabase.storage.from_(bucket_name).get_public_url(dict_data)
-        with st.expander(dict_data[:-4]):
-            st.header(dict_data[:-4])            
-            st.markdown(f'<iframe src="https://docs.google.com/viewer?url={data_source}&embedded=true" width="100%" height="800px">', unsafe_allow_html=True)
-            open_pdf(bucket_name,dict_data,data_source)
+response1= supabase.table('exam_address').select('*').eq('학년','고3/재수').execute()
+st.dataframe(respnse1)
+st.markdown(f'<iframe src="https://docs.google.com/viewer?url={data_source}&embedded=true" width="100%" height="800px">', unsafe_allow_html=True)
+        open_pdf(bucket_name,dict_data,data_source)
 
 def open_pdf(bucket_name,dict_data,url):
     
