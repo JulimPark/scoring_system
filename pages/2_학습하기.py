@@ -5,7 +5,7 @@ import pandas as pd
 
 
 # ## 온라인 게시용 수파 접속
-@st.cache_resource
+@st.cache_data
 def init_connection():
     url = st.secrets["supabase_url"]
     key = st.secrets["supabase_key"]
