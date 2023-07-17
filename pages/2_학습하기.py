@@ -30,7 +30,7 @@ def open_pdf(bucket_name,dict_data):
         res = supabase.storage.from_(bucket_name).download(dict_data)
         pdf_buffer.write(res)
         base64_pdf = base64.b64encode(pdf_buffer.getvalue()).decode('utf-8')        
-        pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="950" type="application/pdf"></iframe>'
+        pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="480" height="720" type="application/pdf"></iframe>'
         st.markdown(pdf_display, unsafe_allow_html=True)
         
     except HTTPError as e:
