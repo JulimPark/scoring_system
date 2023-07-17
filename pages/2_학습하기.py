@@ -4,7 +4,7 @@ from supabase import create_client
 import urllib
 from urllib.error import URLError, HTTPError
 import requests
-
+from pathlib import Path
 
 
 # ## 온라인 게시용 수파 접속
@@ -37,7 +37,12 @@ def open_pdf(url):
         # st.markdown(html)
         # st.write(html)
         req = requests.get(url,headers=headers)
-        base64_pdf = base64.b64encode(req.raw).decode('utf-8')        
+        filename = Path('temp.pdf')
+
+        aaa = filename.write_bytes(req.content)
+
+        
+        base64_pdf = base64.b64encode(aaa).decode('utf-8')        
         pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="950" type="application/pdf"></iframe>'
         st.markdown(pdf_display, unsafe_allow_html=True)
     except HTTPError as e:
