@@ -26,7 +26,12 @@ def view_data(bucket_name):
         st.write(data_source)
         with st.expander(dict_data[:-4]):
             st.header(dict_data[:-4])
-            open_pdf(data_source)
+            headers = {'User-Agent':'Chrome/66.0.3359.181'}
+            req = urllib.request.Request(data_source,headers=headers)
+            st.write(req)
+            html = urllib.request.urlopen(req)
+            st.write(html)
+            # open_pdf(data_source)
 
 def open_pdf(url):
     try:
