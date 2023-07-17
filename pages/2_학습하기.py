@@ -1,10 +1,7 @@
 import streamlit as st
 import base64
 from supabase import create_client
-import urllib
-from urllib.error import URLError, HTTPError
 import requests
-from pathlib import Path
 from io import BytesIO
 
 # ## 온라인 게시용 수파 접속
@@ -42,7 +39,7 @@ def open_pdf(bucket_name,dict_data):
         
         pdf_buffer.write(res)
         
-        st.write(pdf_buffer.getvalue())
+        # st.write(pdf_buffer.getvalue())
         # st.write(req.content)
         base64_pdf = base64.b64encode(pdf_buffer.getvalue()).decode('utf-8')        
         pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="950" type="application/pdf"></iframe>'
