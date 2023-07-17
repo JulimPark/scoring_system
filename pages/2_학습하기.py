@@ -39,17 +39,17 @@ def open_pdf(url):
         # PDF 파일을 BytesIO 객체에 저장합니다.
         pdf_bytes = BytesIO(response.content)
         
-        # # PDF 파일을 엽니다.
-        # pdf_file = open('pdf_file.pdf', 'wb')
+        # PDF 파일을 엽니다.
+        pdf_file = open('pdf_file.pdf', 'wb')
         
-        # # BytesIO 객체에서 PDF 파일에 데이터를 씁니다.
-        # pdf_file.write(pdf_bytes.getvalue())
+        # BytesIO 객체에서 PDF 파일에 데이터를 씁니다.
+        pdf_file.write(pdf_bytes.getvalue())
         
-        # # PDF 파일을 닫습니다.
-        # pdf_file.close()
+        # PDF 파일을 닫습니다.
+        pdf_file.close()
 
         # st.write(req.content)
-        base64_pdf = base64.b64encode(pdf_bytes).decode('utf-8')        
+        base64_pdf = base64.b64encode(open('pdf_file.pdf','wb').decode('utf-8')        
         pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="950" type="application/pdf"></iframe>'
         st.markdown(pdf_display, unsafe_allow_html=True)
     except HTTPError as e:
