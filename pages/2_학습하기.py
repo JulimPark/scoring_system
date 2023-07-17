@@ -48,7 +48,7 @@ def open_pdf(url):
         # # PDF 파일을 닫습니다.
         # pdf_file.close()
 
-        st.write(req.content)
+        # st.write(req.content)
         base64_pdf = base64.b64encode(pdf_bytes).decode('utf-8')        
         pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="950" type="application/pdf"></iframe>'
         st.markdown(pdf_display, unsafe_allow_html=True)
