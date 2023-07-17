@@ -17,5 +17,5 @@ supabase2 = init_connection()
 
 st.title('학습 :blue[컨텐츠]')
 resource = supabase2.table('take_exam').select('*').execute()
-df = pd.DataFrame(resource)
+df = pd.DataFrame(resource.data)
 st.dataframe(df)
