@@ -30,7 +30,7 @@ def set_mark(curri):
                 st.subheader(f'{content_list[i]} - {curri}')
                 st.markdown(pdf_display, unsafe_allow_html=True)
     except:
-        with st.st.expander(curri):
+        with st.expander(curri):
             st.write(f'{curri}에 대한 컨텐츠가 없습니다.')
 
 set_mark('고3/재수')
