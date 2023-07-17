@@ -36,7 +36,7 @@ def open_pdf(url):
         # html = urllib.request.urlopen(req)
         # st.markdown(html)
         # st.write(html)
-        req = requests.get(url,headers=headers)
+        req = requests.get(url)#,headers=headers)
         filename = Path('temp.pdf')
 
         filename.write_bytes(req.content)
