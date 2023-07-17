@@ -30,9 +30,9 @@ def open_pdf(bucket_name,dict_data,url):
     # try:
         pdf_buffer = BytesIO()
         res = supabase.storage.from_(bucket_name).download(dict_data)
-        pdf_buffer.write(res)
-
-        doc = fitz.open(res)
+        with open('temp.pdf','wb') as f:
+            f.write(res)
+            doc = fitz.open(f)
 
         for page in doc:
             img = page.get_pixmap()
