@@ -40,7 +40,7 @@ def open_pdf(bucket_name,dict_data,url):
             image_list.append(img)
 
         for i in range(len(image_list)):
-            st.image(image_list[i]))
+            st.image(image_list[i])
         # res = supabase.storage.from_(bucket_name).download(dict_data)
         
         # base64_pdf = base64.b64encode(res).decode('utf-8')        
