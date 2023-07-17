@@ -39,7 +39,7 @@ def open_pdf(url):
         pdf_buffer = BytesIO()
         pdf_buffer.write(pdf_bytes)
         
-        st.write(pdf_butter.getvalue())
+        st.write(pdf_buffer.getvalue())
         # st.write(req.content)
         base64_pdf = base64.b64encode(pdf_buffer.getvalue()).decode('utf-8')        
         pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="950" type="application/pdf"></iframe>'
