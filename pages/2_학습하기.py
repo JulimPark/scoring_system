@@ -28,11 +28,7 @@ def open_pdf(bucket_name,dict_data):
     try:
         pdf_buffer = BytesIO()
         res = supabase.storage.from_(bucket_name).download(dict_data)
-        st.write(res)
         pdf_buffer.write(res)
-        
-        # st.write(pdf_buffer.getvalue())
-        # st.write(req.content)
         base64_pdf = base64.b64encode(pdf_buffer.getvalue()).decode('utf-8')        
         pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="950" type="application/pdf"></iframe>'
         st.markdown(pdf_display, unsafe_allow_html=True)
