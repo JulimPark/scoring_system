@@ -40,7 +40,7 @@ def set_mark(curri):
             st.write(f'{curri}에 대한 컨텐츠가 없습니다.')
 
 if end_color == '고등선행':
-    set_mark('고3/재수')
+    set_mark('고등선행')
 elif end_color == '고1':
     set_mark('고1')
 elif end_color == '고2':
